@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GabrielOS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="window" id="topbar">
+    <span class="logo" id="welcomeopen">⛏ GabrielOS</span>
+    <span class="topbar-centro">🌍 Bienvenido a mi mundo</span>
+    <span id="timeElement">--/--/---- --:--</span>
+  </div>
+
+  <!-- ICONOS DEL ESCRITORIO -->
+  <div id="desktopApps">
+
+    <!-- Ícono: Ventana de bienvenida -->
+    <div class="app-icon" id="iconWelcome" data-window="welcome" onclick="handleIconTap(this, 'welcome')">
+      <div class="icon-img">🏠</div>
+      <p>Inicio</p>
+    </div>
+
+    <!-- Ícono: Diario del Minero -->
+    <div class="app-icon" id="iconDiario" data-window="diario" onclick="handleIconTap(this, 'diario')">
+      <div class="icon-img">📖</div>
+      <p>Diario</p>
+    </div>
+
+    <!-- Ícono: Proyectos Avanzados -->
+    <div class="app-icon" id="iconProyectos" data-window="proyectos" onclick="handleIconTap(this, 'proyectos')">
+      <div class="icon-img">🧩</div>
+      <p>Proyectos</p>
+    </div>
+
+    <!-- Ícono: Chat -->
+    <div class="app-icon" id="iconChat" data-window="chat" onclick="handleIconTap(this, 'chat')">
+      <div class="icon-img">💬</div>
+      <p>Chat</p>
+    </div>
+
+    <!-- Ícono: Galería -->
+    <div class="app-icon" id="iconGaleria" data-window="galeria" onclick="handleIconTap(this, 'galeria')">
+      <div class="icon-img">🖼️</div>
+      <p>Galería</p>
+    </div>
+
+    <!-- Ícono: Música -->
+    <div class="app-icon" id="iconMusica" data-window="musica" onclick="handleIconTap(this, 'musica')">
+      <div class="icon-img">🎵</div>
+      <p>Música</p>
+    </div>
+
+    <!-- Ícono: Configuración -->
+    <div class="app-icon" id="iconConfig" data-window="config" onclick="handleIconTap(this, 'config')">
+      <div class="icon-img">⚙️</div>
+      <p>Config</p>
+    </div>
+
+  </div>
+
+  <!-- ══ VENTANA: BIENVENIDA ══ -->
+  <div class="window" id="welcome" style="top: calc(50% - 180px); left: calc(50% - 280px);">
+    <div class="windowheader" id="welcomeheader">
+      <span class="headertext">⛏ GabrielOS — Inicio</span>
+      <div class="closebutton" id="welcomeclose"></div>
+    </div>
+    <div class="wincontent">
+      <h1>GABRIEL OS</h1>
+      <h2>Bienvenido a mi mundo personal</h2>
+      <div class="cards">
+        <div class="card">
+          <span class="icono">⛏️</span>
+          <h3>Minecraft</h3>
+          <p>Mi juego favorito de todos los tiempos.</p>
+        </div>
+        <div class="card">
+          <span class="icono">❤️</span>
+          <h3>Mi novia</h3>
+          <p>Los mejores momentos de mi día.</p>
+        </div>
+        <div class="card">
+          <span class="icono">🎵</span>
+          <h3>Música</h3>
+          <p>Álvaro Díaz en repeat total.</p>
+        </div>
+      </div>
+      <div class="btns">
+        <a class="btn" href="https://www.minecraft.net" target="_blank">⛏ Minecraft</a>
+        <a class="btn btn-dark" href="https://open.spotify.com/artist/5J7rXWjtn5HzUkJ4Jet8Fr" target="_blank">🎵 Álvaro Díaz</a>
+      </div>
+      <div class="musica-bar">
+        🎧 Ahora escuchando: <strong>Álvaro Díaz — OMAKASE</strong><br>
+        El álbum que no puedo parar de escuchar.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ VENTANA: DIARIO DEL MINERO ══ -->
+  <div class="window" id="diario" style="top: calc(50% - 220px); left: calc(50% - 240px); display: none;">
+    <div class="windowheader" id="diarioheader">
+      <span class="headertext">📖 Diario del Minero</span>
+      <div class="closebutton" id="diarioclose"></div>
+    </div>
+    <div class="diario-body">
+
+      <!-- Barra lateral -->
+      <div class="diario-sidebar" id="sidebar">
+        <p class="sidebar-titulo">📋 Entradas</p>
+        <!-- Las entradas se generan con JS -->
+      </div>
+
+      <!-- Contenido de la nota -->
+      <div class="diario-contenido" id="notaContenido">
+        <p style="color:#aaa; font-size:8px; margin-top:40px; text-align:center;">
+          👈 Selecciona una entrada
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ VENTANA: CHAT ══ -->
+  <div class="window" id="chat" style="top: 100px; left: 400px; width: 480px; display: none;">
+    <div class="windowheader" id="chatheader">
+      <span class="headertext">💬 Chat Rápido</span>
+      <div class="closebutton" id="chatclose"></div>
+    </div>
+    <div class="chat-body">
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot">¡Hola! ¿Cómo estás hoy? 👋</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" class="chat-input" placeholder="Escribe tu mensaje..." />
+        <button class="chat-send-btn">→</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ VENTANA: GALERÍA ══ -->
+  <div class="window" id="galeria" style="top: 150px; left: 350px; width: 600px; display: none;">
+    <div class="windowheader" id="galeriaheader">
+      <span class="headertext">🖼️ Galería</span>
+      <div class="closebutton" id="galeriaclose"></div>
+    </div>
+    <div class="galeria-body">
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </div>
+
+  <!-- ══ VENTANA: MÚSICA ══ -->
+  <div class="window" id="musica" style="top: 200px; left: 420px; width: 520px; display: none;">
+    <div class="windowheader" id="musicaheader">
+      <span class="headertext">🎵 Reproductor</span>
+      <div class="closebutton" id="musicaclose"></div>
+    </div>
+    <div class="music-body">
+      <div class="now-playing" id="nowPlaying"></div>
+      <div class="player-controls">
+        <button class="player-btn">⏮</button>
+        <button class="player-btn main">▶</button>
+        <button class="player-btn">⏭</button>
+      </div>
+      <div class="playlist" id="playlist"></div>
+    </div>
+  </div>
+
+  <!-- ══ VENTANA: CONFIGURACIÓN ══ -->
+  <div class="window" id="config" style="top: 120px; left: 500px; width: 480px; display: none;">
+    <div class="windowheader" id="configheader">
+      <span class="headertext">⚙️ Configuración</span>
+      <div class="closebutton" id="configclose"></div>
+    </div>
+    <div class="config-body">
+      <div class="config-section">
+        <h3>Sonido</h3>
+        <div class="config-item">
+          <label>Volumen</label>
+          <input type="range" min="0" max="100" value="70" />
+        </div>
+      </div>
+      <div class="config-section">
+        <h3>Pantalla</h3>
+        <div class="config-item">
+          <label>Modo Oscuro</label>
+          <input type="checkbox" checked />
+        </div>
+      </div>
+      <div class="config-section">
+        <h3>Sistema</h3>
+        <p class="config-info">GabrielOS v2.0 · Jun 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ VENTANA: PROYECTOS AVANZADOS ══ -->
+  <div class="window" id="proyectos" style="top: calc(50% - 240px); left: calc(50% - 220px); width: 720px; display: none;">
+    <div class="windowheader" id="proyectosheader">
+      <span class="headertext">🧩 Proyectos Avanzados</span>
+      <div class="closebutton" id="proyectosclose"></div>
+    </div>
+    <div class="proyectos-body">
+      <div class="proyectos-sidebar">
+        <div class="filter-title">Buscar y filtrar</div>
+        <input id="projectSearch" class="project-search" type="text" placeholder="Buscar proyecto..." />
+        <div class="filter-buttons" id="categoryFilters"></div>
+        <div class="project-count" id="projectCount"></div>
+      </div>
+      <div class="proyectos-main">
+        <div class="project-grid" id="projectGrid"></div>
+        <div class="project-detail" id="projectDetail">
+          <p class="project-detail-empty">Selecciona un proyecto para ver más detalles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
